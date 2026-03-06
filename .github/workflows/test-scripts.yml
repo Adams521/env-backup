@@ -36,8 +36,9 @@ jobs:
       - name: Verify NPM config
         run: |
           echo "=== Verifying NPM config ==="
-          cat ~/.npmrc
-          grep -q "npmmirror.com" ~/.npmrc && echo "NPM registry OK"
+          # Script runs with sudo, so .npmrc is in /root/.npmrc
+          cat /root/.npmrc
+          grep -q "npmmirror.com" /root/.npmrc && echo "NPM registry OK"
 
   test-zsh-script:
     name: Test setup_zsh_env.sh
@@ -60,11 +61,12 @@ jobs:
       - name: Verify Oh My Zsh
         run: |
           echo "=== Verifying Oh My Zsh ==="
-          test -d ~/.oh-my-zsh && echo "Oh My Zsh installed OK"
+          # Script runs with sudo, so files are in /root/.oh-my-zsh
+          test -d /root/.oh-my-zsh && echo "Oh My Zsh installed OK"
 
       - name: Verify plugins
         run: |
           echo "=== Verifying plugins ==="
-          ls -la ~/.zsh/
-          test -d ~/.zsh/zsh-autosuggestions && echo "autosuggestions OK"
-          test -d ~/.zsh/zsh-syntax-highlighting && echo "syntax-highlighting OK"
+          ls -la /root/.zsh/
+          test -d /root/.zsh/zsh-autosuggestions && echo "autosuggestions OK"
+          test -d /root/.zsh/zsh-syntax-highlighting && echo "syntax-highlighting OK"
