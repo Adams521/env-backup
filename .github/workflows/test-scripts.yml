@@ -19,7 +19,7 @@ jobs:
         run: |
           echo "=== Testing setup_mirrors.sh ==="
           chmod +x setup_mirrors.sh
-          ./setup_mirrors.sh
+          sudo ./setup_mirrors.sh
 
       - name: Verify APT source
         run: |
@@ -50,7 +50,7 @@ jobs:
         run: |
           echo "=== Testing setup_zsh_env.sh ==="
           chmod +x setup_zsh_env.sh
-          ./setup_zsh_env.sh
+          sudo ./setup_zsh_env.sh
 
       - name: Verify zsh installation
         run: |
